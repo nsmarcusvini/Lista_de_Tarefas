@@ -1,5 +1,7 @@
 import streamlit as st
 from datetime import datetime
+import controller.ColaboradorController as colaborador_controller
+import models.Colaborador as colaborador
 
 
 def pagina_cadastro_colab():
@@ -10,7 +12,9 @@ def pagina_cadastro_colab():
         input_botao_colab = st.form_submit_button("Cadastrar colaborador")
 
     if input_botao_colab:
-        st.write(f'Nome: {input_nome}')
+        colaborador.nome = input_nome
+
+        colaborador_controller.Incluir(colaborador)
 
 pagina_selecionada = st.sidebar.radio("Navegação", ["Cadastrar Colaborador", "Lista de Tarefas"])
 
