@@ -1,7 +1,7 @@
 import streamlit as st
 from datetime import datetime
-import controller.ColaboradorController as colaborador_controller
 import models.Colaborador as colaborador
+import database as db
 
 
 def pagina_cadastro_colab():
@@ -9,12 +9,21 @@ def pagina_cadastro_colab():
 
     with st.form(key="include_colaborador"):
         input_nome = st.text_input(label="Insira seu nome")
-        input_botao_colab = st.form_submit_button("Cadastrar colaborador")
+        input_botao_cadastrar_colab = st.form_submit_button("Cadastrar colaborador")
+        input_botao_exibe_colabs = st.form_submit_button("Exibir colaboradores")
+        input_botao_deleta_colabs = st.form_submit_button("Remover colaborador")
 
-    if input_botao_colab:
+    if input_botao_cadastrar_colab:
         colaborador.nome = input_nome
+        db.cadastrarColab(input_nome)
 
-        colaborador_controller.Incluir(colaborador)
+# fazer exibir e deletar funcionar
+    if(input_botao_exibe_colabs):
+       db.exibirColabs()
+
+
+    if(input_botao_deleta_colabs):
+        db.removerColab(input_nome)
 
 pagina_selecionada = st.sidebar.radio("Navegação", ["Cadastrar Colaborador", "Lista de Tarefas"])
 
