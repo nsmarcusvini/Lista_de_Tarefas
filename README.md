@@ -1,5 +1,5 @@
-# Lista_de_Tarefas
-Lista de tarefas integrado com banco de dados MySql Local
+# Lista de Tarefas
+Task list integrated with local database(Mysql) developed in python
 
 ## Frameowrks
 - Python 
